@@ -1,1 +1,1 @@
-Template.prototype.appTemplate=()=>'';
+Template.prototype.appTemplate =()=> '';

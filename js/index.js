@@ -1,4 +1,4 @@
 const template = new Template();
-window.onload = function() {
+window.onload = function () {
     new App({ id: 'app', template: template.appTemplate });
 }
