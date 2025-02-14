@@ -1,0 +1,3 @@
+class Targets extends Component {
+
+}

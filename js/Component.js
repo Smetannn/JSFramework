@@ -1,5 +1,5 @@
 class Component {
-    constructor({id, parent,template, templateParams, callbacks = {}, className}) {
+    constructor({ id, parent, template, templateParams, callbacks = {}, className }) {
         this.id = id;
         this.parent = parent;
         this.callbacks = callbacks;
@@ -19,14 +19,14 @@ class Component {
         const elem = document.createElement('div')
         elem.setAttribute('id', this.id);
         if (className) {
-            elem.classList.add(className); 
+            elem.classList.add(className);
         }
         elem.innerHTML = template;
         if (this.parent) {
             document.getElementById(this.parent).appendChild(elem);
-        }else{
-            document.querySelector('body').appendChild(elem); 
+        } else {
+            document.querySelector('body').appendChild(elem);
         }
-    }   
-    addEventListeners(){}
+    }
+    addEventListeners() { }
 }
