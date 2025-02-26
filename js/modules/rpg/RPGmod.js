@@ -108,9 +108,9 @@ class RPGmod {
 
         this.hp = this.user.hp;
 
-    }   
+    }
 
-    renderRoom(title, img, description, exits, hp){
+    renderRoom(title, img, description, exits, hp) {
         document.querySelector('.rpg-title').innerHTML = title;
         document.getElementById('description').innerHTML = description;
         document.getElementById('roomImage').src = img;
@@ -118,14 +118,14 @@ class RPGmod {
         var exits = document.getElementById('exits');
         exits.innerHTML = '';
     }
-    
-    renderButton(text, onClick){
+
+    renderButton(text, onClick) {
         var button = document.createElement('button');
         button.innerHTML = text;
         button.addEventListener('click', onClick);
         document.getElementById('exits').appendChild(button);
     }
-    
+
     dead() {
         this.current = 'heaven';
         let room = this.Rooms[this.current];
@@ -140,29 +140,30 @@ class RPGmod {
             })(i);
         }
     }
-    render(){
+    render() {
         if (this.hp <= 0) {
             this.dead();
         } else {
-        
-        var room = this.Rooms[this.current];
+            let room = this.Rooms[this.current];
+            if (this.current== "shop") {
+                this.hp += 3;
+            }
+            this.renderRoom(room.title, room.img, room.description, room.exits, this.hp);
 
-        this.renderRoom(room.title, room.img, room.description, room.exits, this.hp);
-        
-        for(var i = 0; i < room.exits.length; i++){
-            ((i) => {
-                this.renderButton(this.Rooms[room.exits[i]].title, () => {
-                    this.current = room.exits[i];
-                    this.hp -= 1;
-                    this.render();
-            });
-            })(i);
+            for (var i = 0; i < room.exits.length; i++) {
+                ((i) => {
+                    this.renderButton(this.Rooms[room.exits[i]].title, () => {
+                        this.current = room.exits[i];
+                        this.hp -= 1;
+                        this.render();
+                    });
+                })(i);
+            }
+
+
         }
 
-
-    }  
-    
-}
+    }
 }
 
 /*class RPGmod {
