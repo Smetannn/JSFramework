@@ -147,9 +147,13 @@ class RPGmod {
             this.dead();
         } else {
             let room = this.Rooms[this.current];
-            if (this.current== "shop") {
+            if (room== "shop") {
                 this.hp += 3;
             }
+            if (room.money){
+                this.money+=room.money;
+            }
+        
             this.renderRoom(room.title, room.img, room.description, room.exits, this.hp,this.money);
 
             for (var i = 0; i < room.exits.length; i++) {
@@ -167,4 +171,3 @@ class RPGmod {
 
     }
 }
-
