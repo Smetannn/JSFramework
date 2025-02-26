@@ -23,14 +23,20 @@ class App extends Component {
             template: template.targetsTemplate
         });
 
-        this.showContent('targets');
+        this.rpg = new RPG({
+            id: 'rpg-container',
+            parent: this.id,
+            template: template.rpgTemplate
+        });
 
+        this.showContent('targets');
     }
+
     showContent(name) {
         this.esse.hide();
         this.targets.hide();
+        this.rpg.hide();
         this[name].show();
 
-
-    }
+}
 }

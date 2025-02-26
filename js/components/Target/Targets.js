@@ -9,8 +9,6 @@ class Targets extends Component {
         }
     }
     
-    
-
 
     addEventListeners() {
         document.querySelector('.target-shot')
