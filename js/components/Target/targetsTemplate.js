@@ -1,5 +1,5 @@
 Template.prototype.targetsTemplate =()=>`
-<h2>Мишени</h2>
+<h1>Мишени</h1>
 <img src='img/Мишени.png'>
 <div>
     <span>Сколько выстрелов делаем?</span><br>

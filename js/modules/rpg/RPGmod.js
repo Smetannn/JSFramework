@@ -80,8 +80,8 @@ class RPGmod {
                 exits: ['corridor', "floor_1"]
             },
             hall: {
-                title: "Вахта - 2 монеты",
-                description: 'Ты пришел на вахту общежития. Проход стоит 2 монеты',
+                title: "Вахта",
+                description: 'Ты пришел на вахту общежития',
                 buttonDescription: 'Куда пойдешь?',
                 img: "img/hall.jpg",
                 exits: ['street', "floor_1"],
@@ -94,7 +94,7 @@ class RPGmod {
                 img: "img/heaven.jpg",
                 exits: ['start']
             }, shop: {
-                title: "Красное Белое - 1 монета",
+                title: "Красное Белое",
                 description: 'Ты подкрепился! +3 к здоровью',
                 buttonDescription: 'Куда дальше?',
                 img: "img/kb.jpg",
@@ -114,7 +114,7 @@ class RPGmod {
         document.querySelector('.rpg-title').innerHTML = title;
         document.getElementById('description').innerHTML = description;
         document.getElementById('roomImage').src = img;
-        document.getElementById('hp').innerHTML = 'Здоровье ' + hp + ' единиц';
+        document.getElementById('hp').innerHTML = 'Здоровье: ' + hp ;
         var exits = document.getElementById('exits');
         exits.innerHTML = '';
     }
@@ -166,45 +166,3 @@ class RPGmod {
     }
 }
 
-/*class RPGmod {
-    
-
-    r
-
-    dead() {
-        this.current = 'heaven';
-        let room = this.Rooms[this.current];
-        this.renderRoom(room.title, room.img, room.description, room.exits, this.hp);
-        for (var i = 0; i < room.exits.length; i++) {
-            ((i) => {
-                this.renderButton(this.Rooms[room.exits[i]].title, () => {
-                    this.current = room.exits[i];
-                    this.hp = 10;
-                    this.render();
-                });
-            })(i);
-        }
-    }
-    
-    render() {
-        if (this.hp <= 0) {
-            this.dead();
-        } else {
-            let room = this.Rooms[this.current];
-            if (this.current== "shop") {
-                this.hp += 3;
-            }
-            this.renderRoom(room.title, room.img, room.description, room.exits, this.hp);
-            for (var i = 0; i < room.exits.length; i++) {
-                ((i) => {
-                    this.renderButton(this.Rooms[room.exits[i]].title, () => {
-                        this.current = room.exits[i];
-                        this.hp -= 1;
-                        this.render();
-                    });
-                })(i);
-            }
-        }
-
-    }
-}*/
