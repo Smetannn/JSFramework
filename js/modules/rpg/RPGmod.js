@@ -8,7 +8,7 @@ class RPGmod {
     constructor() {
         this.user = {
             hp: 10,
-            money: 5,
+            money: 0,
             current: 'start',
         }
 
@@ -107,14 +107,20 @@ class RPGmod {
         this.current = 'start';
 
         this.hp = this.user.hp;
+        this.money=this.user.money;
 
     }
 
-    renderRoom(title, img, description, exits, hp) {
+    renderRoom(title, img, description, exits, hp, money) {
         document.querySelector('.rpg-title').innerHTML = title;
         document.getElementById('description').innerHTML = description;
         document.getElementById('roomImage').src = img;
+<<<<<<< HEAD
         document.getElementById('hp').innerHTML = 'Здоровье: ' + hp ;
+=======
+        document.getElementById('hp').innerHTML = 'Здоровье ' + hp + ' единиц';
+        document.getElementById('money').innerHTML = 'Ваши деньги: ' + money;
+>>>>>>> 980965a8440434bd9c51e5d90c777ec7f5d1cb58
         var exits = document.getElementById('exits');
         exits.innerHTML = '';
     }
@@ -129,7 +135,7 @@ class RPGmod {
     dead() {
         this.current = 'heaven';
         let room = this.Rooms[this.current];
-        this.renderRoom(room.title, room.img, room.description, room.exits, this.hp);
+        this.renderRoom(room.title, room.img, room.description, room.exits, this.hp, this.money);
         for (var i = 0; i < room.exits.length; i++) {
             ((i) => {
                 this.renderButton(this.Rooms[room.exits[i]].title, () => {
@@ -145,10 +151,14 @@ class RPGmod {
             this.dead();
         } else {
             let room = this.Rooms[this.current];
-            if (this.current== "shop") {
+            if (room== "shop") {
                 this.hp += 3;
             }
-            this.renderRoom(room.title, room.img, room.description, room.exits, this.hp);
+            if (room.money){
+                this.money+=room.money;
+            }
+        
+            this.renderRoom(room.title, room.img, room.description, room.exits, this.hp,this.money);
 
             for (var i = 0; i < room.exits.length; i++) {
                 ((i) => {
@@ -165,4 +175,7 @@ class RPGmod {
 
     }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 980965a8440434bd9c51e5d90c777ec7f5d1cb58
