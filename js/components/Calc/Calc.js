@@ -1,7 +1,8 @@
 class Calc extends Component {
     constructor(options) {
         super(options);
-    } operandHandler(event) {
+    }
+    operandHandler(event) {
         const A = document.getElementById('A').value;
         const B = document.getElementById('B').value;
         const operand = event.target.dataset.operand;
@@ -13,5 +14,4 @@ class Calc extends Component {
         const buttons = document.querySelectorAll('.operand');
         buttons.forEach(button => button.addEventListener('click', this.operandHandler));
     }
-
 }

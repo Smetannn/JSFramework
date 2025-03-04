@@ -115,12 +115,8 @@ class RPGmod {
         document.querySelector('.rpg-title').innerHTML = title;
         document.getElementById('description').innerHTML = description;
         document.getElementById('roomImage').src = img;
-<<<<<<< HEAD
         document.getElementById('hp').innerHTML = 'Здоровье: ' + hp ;
-=======
-        document.getElementById('hp').innerHTML = 'Здоровье ' + hp + ' единиц';
-        document.getElementById('money').innerHTML = 'Ваши деньги: ' + money;
->>>>>>> 980965a8440434bd9c51e5d90c777ec7f5d1cb58
+
         var exits = document.getElementById('exits');
         exits.innerHTML = '';
     }
@@ -175,7 +171,3 @@ class RPGmod {
 
     }
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 980965a8440434bd9c51e5d90c777ec7f5d1cb58
