@@ -12,30 +12,36 @@ class App extends Component {
         });
 
         this.esse = new Esse({
-            id: 'esse-container',
+            id: 'esse',
             parent: this.id,
             template: template.esseTemplate
         });
 
         this.targets = new Targets({
-            id: 'targets-container',
+            id: 'targets',
             parent: this.id,
             template: template.targetsTemplate
         });
 
         this.rpg = new RPG({
-            id: 'rpg-container',
+            id: 'rpg',
             parent: this.id,
             template: template.rpgTemplate
         });
+        this.calc = new Calc({
+            id: 'calc',
+            parent: this.id,
+            template: template.calcTemplate,
+        });
 
-        this.showContent('targets');
+        this.showContent('esse');
     }
 
     showContent(name) {
         this.esse.hide();
         this.targets.hide();
         this.rpg.hide();
+        this.calc.hide();
         this[name].show();
 
 }
