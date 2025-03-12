@@ -33,12 +33,19 @@ class App extends Component {
             parent: this.id,
             template: template.calcTemplate,
         });
+        this.graph2D = new Graph2D({
+            id: 'graph2D',
+            parent: this.id,
+            template: template.graph2DTemplate,
+        });
 
-        this.showContent('esse');
+        
+        this.showContent('graph2D');
     }
 
     showContent(name) {
         this.esse.hide();
+        this.graph2D.hide();
         this.targets.hide();
         this.rpg.hide();
         this.calc.hide();
