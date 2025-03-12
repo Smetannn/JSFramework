@@ -27,7 +27,7 @@ class Graph2D extends Component {
             parent: this.id,
             template: template.uiTemplate,
             callbacks: {
-                addFunction: (f, num, color) => this.addFunction(f, num, color),
+                addFunction: (f, num, color, flag) => this.addFunction(f, num, color, flag),
                 delFunction: (num) => this.delFunction(num),
             }
         });
@@ -62,6 +62,12 @@ class Graph2D extends Component {
     }
 
 
+    setFlag(flag, num) {
+        if (this.funcs[num]) {
+            this.funcs[num].flag = flag;
+            this.render2D();
+        }
+    }
 
     mousemove(event) {
         if (this.canMove) {
@@ -96,6 +102,7 @@ class Graph2D extends Component {
 
     printOXY() {
         const { LEFT, BOTTOM, HEIGHT, WIDTH } = this.WIN;
+        // Разметка
         for (let i = 0; i < LEFT + WIDTH; i += 1) {
             this.graph.line(i, BOTTOM, i, BOTTOM + HEIGHT, '#ddd');
             this.graph.line(i, -0.1, i, 0.1, 'black');
@@ -158,7 +165,7 @@ class Graph2D extends Component {
 
         for (let i = 0; i < this.funcs.length; i++) {
             if (this.funcs[i]) {
-                this.renderFunction(this.funcs[i].f, this.funcs[i].color);
+                this.renderFunction(this.funcs[i].f, this.funcs[i].color, this.funcs[i].flag);
             }
 
 
@@ -166,6 +173,7 @@ class Graph2D extends Component {
         this.funcs.forEach(element => {
             if (element?.printDer) {
                 this.printDerivative(element.f, this.derivativeX);
+
             }
         })
 
