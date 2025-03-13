@@ -11,7 +11,7 @@ class Graph3D extends Component {
             CAMERA: new Point(0, 0, 50),
         };
 
-        this.scene = new Cube();
+        this.scene = new Pyramid();
         this.figures = new Figures;
         this.math3D = new Math3D({ WIN: this.WIN });
         this.canvas = new Canvas({
@@ -80,7 +80,12 @@ class Graph3D extends Component {
                 this.scene = new Cube();
             } else if (selectedFigure === 'Sphere') {
                 this.scene = new Sphere();
+            } else if (selectedFigure === 'Pyramid') {
+                this.scene = new Pyramid();
+            } else if (selectedFigure==='Cylinder') {
+                this.scene = new Cylinder();
             }
+    
     
             this.renderFrame();
         });
@@ -103,6 +108,17 @@ renderFrame() {
             this.math3D.xs(point),
             this.math3D.ys(point)
         );
+    });
+    this.scene.polygons.forEach(polygon => {
+        const points = polygon.points.map(index => {
+            const point = this.scene.points[index];
+            return new Point(
+                this.math3D.xs(point),
+                this.math3D.ys(point)
+            );
+        });
+
+        this.canvas.polygon(points, polygon.color);
     });
 }
 }

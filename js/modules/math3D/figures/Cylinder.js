@@ -1,21 +1,25 @@
-class Sphere extends Figure {
-constructor(count = 20, R = 15) {
-super();
-    const points = [];
+class Cylinder extends Figure {
+    constructor(count = 20, h = 15, a = 10, b = 10) {
+        super();
+        const points = [];
     const edges = [];
     const polygons = [];
-   
-    const dt = Math.PI * 2 / count;
-    for (let i = 0; i <= Math.PI; i += dt) {
-        for (let j = 0; j < Math.PI * 2; j += dt) {
-            points.push(new Point(
-                R * Math.cos(j) * Math.sin(i),
-                R * Math.cos(i),
-                R * Math.sin(j) * Math.sin(i),
-            ));
+
+    //точки
+    const dt = 2 * Math.PI / count;
+    for (let p = -h; p < h; p = p + 2) {
+        for (let i = 0; i <= Math.PI; i += 2 * dt + count) {
+            for (let j = 0; j < 2 * Math.PI; j += dt) {
+                points.push(new Point(
+                    a * Math.cos(i) * Math.cos(j),
+                    b * Math.sin(j),
+                    p
+                ));
+            }
         }
     }
 
+    //ребра
     for (let i = 0; i < points.length; i++) {
         if (i + 1 < points.length && (i + 1) % count !== 0) {
             edges.push(new Edge(
@@ -36,8 +40,6 @@ super();
         }
     }
 
-
     return new Figure(points, edges,polygons);
-
-}
+    }
 }

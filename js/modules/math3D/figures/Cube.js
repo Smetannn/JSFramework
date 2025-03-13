@@ -25,12 +25,12 @@ class Cube extends Figure {
             new Edge(5, 4),
             new Edge(2, 6)
         ], [
-            new Polygon([0, 1, 2, 3], '#4bdb1e'),
-            new Polygon([0, 4, 7, 3], '#4bdb1e'),
-            new Polygon([0, 4, 5, 1], '#4bdb1e'),
-            new Polygon([1, 2, 6, 5], '#4bdb1e'),
-            new Polygon([2, 3, 7, 6], '#4bdb1e'),
-            new Polygon([4, 5, 6, 7], '#4bdb1e')
+            new Polygon([0, 1, 2, 3], 'red'),
+            new Polygon([0, 4, 7, 3], 'red'),
+            new Polygon([0, 4, 5, 1], 'red'),
+            new Polygon([1, 2, 6, 5], 'red'),
+            new Polygon([2, 3, 7, 6], 'red'),
+            new Polygon([4, 5, 6, 7], 'red')
         ];
     }
 }
