@@ -5,6 +5,7 @@ Template.prototype.graph3DTemplate = () => `
             <option value="Sphere">Сфера</option>
             <option value="Pyramid">Пирамида</option>
             <option value="Cylinder">Цилиндр</option>
+            <option value="Thor">Тор</option>
             </select> 
         <canvas id="canvas3D"></canvas>
     </div>

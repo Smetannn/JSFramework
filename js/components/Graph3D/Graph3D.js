@@ -84,6 +84,8 @@ class Graph3D extends Component {
                 this.scene = new Pyramid();
             } else if (selectedFigure === 'Cylinder') {
                 this.scene = new Cylinder();
+            } else if (selectedFigure === 'Thor') {
+                this.scene = new Thor();
             }
 
 
