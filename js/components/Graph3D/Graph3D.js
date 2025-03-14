@@ -94,6 +94,19 @@ class Graph3D extends Component {
     }
     renderFrame() {
         this.canvas.clear();
+        this.math3D.calcDistance(this.scene,this.WIN.CAMERA,'distance');
+        this.math3D.sortByArtistAlgorithm(this.scene.polygons); 
+        this.scene.polygons.forEach(polygon => {
+            const points = polygon.points.map(index => {
+                const point = this.scene.points[index];
+                return new Point(
+                    this.math3D.xs(point),
+                    this.math3D.ys(point)
+                );
+            });
+
+            this.canvas.polygon(points, polygon.color);
+        });
         this.scene.edges.forEach(edge => {
             const p1 = this.scene.points[edge.p1];
             const p2 = this.scene.points[edge.p2];
@@ -111,17 +124,7 @@ class Graph3D extends Component {
                 this.math3D.ys(point)
             );
         });
-        this.scene.polygons.forEach(polygon => {
-            const points = polygon.points.map(index => {
-                const point = this.scene.points[index];
-                return new Point(
-                    this.math3D.xs(point),
-                    this.math3D.ys(point)
-                );
-            });
 
-            this.canvas.polygon(points, polygon.color);
-        });
     }
 }
 

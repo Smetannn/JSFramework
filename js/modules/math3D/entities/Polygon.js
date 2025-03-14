@@ -3,5 +3,6 @@ class Polygon {
         this.points = points;
         this.color = color;
         this.opaticy = opaticy;
+        this.distance=0;
     }
 }
