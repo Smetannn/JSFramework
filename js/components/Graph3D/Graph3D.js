@@ -11,7 +11,7 @@ class Graph3D extends Component {
             CAMERA: new Point(0, 0, 50),
         };
 
-        this.scene = new Pyramid();
+        this.scene = new Cube();
         this.figures = new Figures;
         this.math3D = new Math3D({ WIN: this.WIN });
         this.canvas = new Canvas({
@@ -61,8 +61,8 @@ class Graph3D extends Component {
             const gradus = Math.PI / 180 / ROTATION_SENSITIVITY;
 
             this.scene.points.forEach(point => {
-                this.math3D.rotateOy(-(this.dx-event.offsetX) *gradus, point);
-                this.math3D.rotateOx(-(this.dy-event.offsetY) * gradus, point);
+                this.math3D.rotateOy(-(this.dx - event.offsetX) * gradus, point);
+                this.math3D.rotateOx(-(this.dy - event.offsetY) * gradus, point);
             });
 
             this.dx = event.offsetX;
@@ -74,54 +74,53 @@ class Graph3D extends Component {
 
     addEventListeners() {
         document.getElementById('selectFigure').addEventListener('change', (event) => {
-            const selectedFigure = event.target.value; 
-            
+            const selectedFigure = event.target.value;
+
             if (selectedFigure === 'Cube') {
                 this.scene = new Cube();
             } else if (selectedFigure === 'Sphere') {
                 this.scene = new Sphere();
             } else if (selectedFigure === 'Pyramid') {
                 this.scene = new Pyramid();
-            } else if (selectedFigure==='Cylinder') {
+            } else if (selectedFigure === 'Cylinder') {
                 this.scene = new Cylinder();
             }
-    
-    
+
+
             this.renderFrame();
         });
     }
-renderFrame() {
-    this.canvas.clear();
-    this.scene.edges.forEach(edge => {
-        const p1 = this.scene.points[edge.p1];
-        const p2 = this.scene.points[edge.p2];
-        this.canvas.line(
-            this.math3D.xs(p1),
-            this.math3D.ys(p1),
-            this.math3D.xs(p2),
-            this.math3D.ys(p2)
-        );
-    });
+    renderFrame() {
+        this.canvas.clear();
+        this.scene.edges.forEach(edge => {
+            const p1 = this.scene.points[edge.p1];
+            const p2 = this.scene.points[edge.p2];
+            this.canvas.line(
+                this.math3D.xs(p1),
+                this.math3D.ys(p1),
+                this.math3D.xs(p2),
+                this.math3D.ys(p2)
+            );
+        });
 
-    this.scene.points.forEach(point => {
-        this.canvas.point(
-            this.math3D.xs(point),
-            this.math3D.ys(point)
-        );
-    });
-    this.scene.polygons.forEach(polygon => {
-        const points = polygon.points.map(index => {
-            const point = this.scene.points[index];
-            return new Point(
+        this.scene.points.forEach(point => {
+            this.canvas.point(
                 this.math3D.xs(point),
                 this.math3D.ys(point)
             );
         });
+        this.scene.polygons.forEach(polygon => {
+            const points = polygon.points.map(index => {
+                const point = this.scene.points[index];
+                return new Point(
+                    this.math3D.xs(point),
+                    this.math3D.ys(point)
+                );
+            });
 
-        this.canvas.polygon(points, polygon.color);
-    });
+            this.canvas.polygon(points, polygon.color);
+        });
+    }
 }
-}
 
 
-   

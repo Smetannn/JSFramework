@@ -1,6 +1,7 @@
 class Polygon {
-    constructor(points = [], color = 'red') {
+    constructor(points = [], color = 'green', opaticy = 0.2) {
         this.points = points;
         this.color = color;
+        this.opaticy = opaticy;
     }
 }

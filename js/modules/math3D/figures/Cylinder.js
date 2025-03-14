@@ -5,7 +5,6 @@ class Cylinder extends Figure {
     const edges = [];
     const polygons = [];
 
-    //точки
     const dt = 2 * Math.PI / count;
     for (let p = -h; p < h; p = p + 2) {
         for (let i = 0; i <= Math.PI; i += 2 * dt + count) {
@@ -19,7 +18,6 @@ class Cylinder extends Figure {
         }
     }
 
-    //ребра
     for (let i = 0; i < points.length; i++) {
         if (i + 1 < points.length && (i + 1) % count !== 0) {
             edges.push(new Edge(

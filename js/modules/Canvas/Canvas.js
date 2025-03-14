@@ -56,7 +56,8 @@ class Canvas {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
-    polygon(points = [], color = '#F805') {
+    polygon(points = [], color = 'red',opaticy=0.5) {
+        this.context.globalAlpha = opaticy;
         this.context.beginPath();
         this.context.strokeStyle = color;
         this.context.fillStyle = color;
@@ -66,23 +67,6 @@ class Canvas {
         }
         this.context.lineTo(this.xs(points[0].x), this.ys(points[0].y));
         this.context.closePath();
-        this.context.fill();
-    }
-
-    tablet(x, y, color = 'red', size = 2, reverse) {
-        size = size;
-        this.context.beginPath();
-        this.context.strokeStyle = color;
-        this.context.fillStyle = color;
-        if (!reverse) {
-            this.context.arc(this.xs(x), this.ys(y) + size, size, 0, Math.PI);
-            this.context.arc(this.xs(x), this.ys(y) - size, size, Math.PI, Math.PI * 2);
-        } else {
-            this.context.arc(this.xs(x) + size, this.ys(y), size, -Math.PI * 0.5, Math.PI * 0.5);
-            this.context.arc(this.xs(x) - size, this.ys(y), size, Math.PI * 0.5, -Math.PI * 0.5);
-        }
-        this.context.closePath();
-        this.context.stroke();
         this.context.fill();
     }
     

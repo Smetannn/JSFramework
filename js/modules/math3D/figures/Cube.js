@@ -24,13 +24,14 @@ class Cube extends Figure {
             new Edge(5, 6),
             new Edge(5, 4),
             new Edge(2, 6)
-        ], [
-            new Polygon([0, 1, 2, 3], 'red'),
-            new Polygon([0, 4, 7, 3], 'red'),
-            new Polygon([0, 4, 5, 1], 'red'),
-            new Polygon([1, 2, 6, 5], 'red'),
-            new Polygon([2, 3, 7, 6], 'red'),
-            new Polygon([4, 5, 6, 7], 'red')
+        ];
+        this.polygons = [
+            new Polygon([0, 1, 2, 3]),
+            new Polygon([0, 4, 7, 3]),
+            new Polygon([0, 4, 5, 1]),
+            new Polygon([1, 2, 6, 5]),
+            new Polygon([2, 3, 7, 6]),
+            new Polygon([4, 5, 6, 7])
         ];
     }
 }
