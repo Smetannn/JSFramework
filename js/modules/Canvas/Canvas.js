@@ -57,8 +57,9 @@ class Canvas {
     }
 
     polygon(points = [], color = 'red',opaticy=0.2) {
-        this.context.globalAlpha = opaticy;
+        
         this.context.beginPath();
+        this.context.globalAlpha = opaticy;
         this.context.strokeStyle = color;
         this.context.fillStyle = color;
         this.context.moveTo(this.xs(points[0].x), this.ys(points[0].y));

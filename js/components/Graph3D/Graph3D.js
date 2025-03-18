@@ -86,16 +86,17 @@ class Graph3D extends Component {
                 this.scene = new Cylinder();
             } else if (selectedFigure === 'Thor') {
                 this.scene = new Thor();
+            } else if (selectedFigure === 'KleinBottle') {
+                this.scene = new KleinBottle();
             }
-
 
             this.renderFrame();
         });
     }
     renderFrame() {
         this.canvas.clear();
-        this.math3D.calcDistance(this.scene,this.WIN.CAMERA,'distance');
-        this.math3D.sortByArtistAlgorithm(this.scene.polygons); 
+        this.math3D.calcDistance(this.scene, this.WIN.CAMERA, 'distance');
+        this.math3D.sortByArtistAlgorithm(this.scene.polygons);
         this.scene.polygons.forEach(polygon => {
             const points = polygon.points.map(index => {
                 const point = this.scene.points[index];
