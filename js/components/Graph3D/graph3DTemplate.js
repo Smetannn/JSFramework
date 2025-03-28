@@ -6,6 +6,7 @@ Template.prototype.graph3DTemplate = () => `
             <option value="Pyramid">Пирамида</option>
             <option value="Cylinder">Цилиндр</option>
             <option value="Thor">Тор</option>
+            <option value="Conus">Конус</option>
             <option value="EllipticalCylinder">Эллиптический цилиндр</option>
             <option value="ParabolicCylinder">Параболический цилиндр</option>
             <option value="HyperbolicCylinder">Гиперболический цилиндр</option>
@@ -20,7 +21,7 @@ Template.prototype.graph3DTemplate = () => `
             <label><input type="checkbox" id="polygonsCheckbox" checked> Полигоны</label>
         </div>
         <div class="light-control">
-            <label for="lightPower">Мощность света: <span id="lightPowerValue">50</span></label>
+            <label for="lightPower">Мощность света: <span id="lightPowerValue">50</span></label><br>
             <input type="range" id="lightPower" min="0" max="100000" value="0" class="slider">
         </div>
         <canvas class="canvas" id="canvas3D"></canvas>
