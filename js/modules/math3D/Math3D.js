@@ -99,4 +99,11 @@ calcDistance(figure,endPoint,name){
 sortByArtistAlgorithm(polygons) {
     polygons.sort((a, b) => b.distance - a.distance);
 }
+
+calcIllumination(distance, lumen){
+    const illum = distance?lumen/distance**3:1;
+    return illum > 1?1:illum;
+}
+
+
 }

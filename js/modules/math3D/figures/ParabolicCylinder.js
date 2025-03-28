@@ -1,0 +1,3 @@
+class ParabolicCylinder extends Figure {
+    
+}

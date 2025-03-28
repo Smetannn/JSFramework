@@ -1,3 +1,4 @@
+
 class Graph3D extends Component {
     constructor(options) {
         super(options);
@@ -11,6 +12,7 @@ class Graph3D extends Component {
             CAMERA: new Point(0, 0, 50),
         };
 
+       this.LIGHT = new Light(-40,5,10,100000);
         this.scene = new Cube();
         this.figures = new Figures;
         this.math3D = new Math3D({ WIN: this.WIN });
@@ -86,47 +88,91 @@ class Graph3D extends Component {
                 this.scene = new Cylinder();
             } else if (selectedFigure === 'Thor') {
                 this.scene = new Thor();
-            } else if (selectedFigure === 'KleinBottle') {
-                this.scene = new KleinBottle();
+            } else if (selectedFigure === 'Elipsoid') {
+                this.scene = new Elipsoid();
+            } else if (selectedFigure === 'Conus') {
+                this.scene = new Conus();
+            } else if (selectedFigure === 'EllipticalCylinder') {
+                this.scene = new EllipticalCylinder();
+            } else if (selectedFigure === 'ParabolicCylinder') {
+                this.scene = new ParabolicCylinder();
+            } else if (selectedFigure === 'HyperbolicCylinder') {
+                this.scene = new HyperbolicCylinder();
+            } else if (selectedFigure === 'OneSheetedHyperboloid') {
+                this.scene = new OneSheetedHyperboloid();
+            } else if (selectedFigure === 'TwoSheetedHyperboloid') {
+                this.scene = new TwoSheetedHyperboloid();
+            } else if (selectedFigure === 'EllipticalParaboloid') {
+                this.scene = new EllipticalParaboloid();
+            } else if (selectedFigure === 'HyperbolicParaboloid') {
+                this.scene = new HyperbolicParaboloid();
             }
-
             this.renderFrame();
         });
+
+        document.getElementById('pointsCheckbox').addEventListener('change', () => {
+            this.renderFrame();
+        });
+
+        document.getElementById('edgesCheckbox').addEventListener('change', () => {
+            this.renderFrame();
+        });
+
+        document.getElementById('polygonsCheckbox').addEventListener('change', () => {
+            this.renderFrame();
+        });
+document.getElementById('lightPower').addEventListener('input', (event) => {
+            const powerValue = parseInt(event.target.value);
+            this.LIGHT.lumen = powerValue;
+            document.getElementById('lightPowerValue').textContent = powerValue;
+            this.renderFrame();
+        });
+        
     }
-    renderFrame() {
+    renderFrame(){
         this.canvas.clear();
         this.math3D.calcDistance(this.scene, this.WIN.CAMERA, 'distance');
+        this.math3D.calcDistance(this.scene, this.LIGHT, 'lumen');
         this.math3D.sortByArtistAlgorithm(this.scene.polygons);
-        this.scene.polygons.forEach(polygon => {
-            const points = polygon.points.map(index => {
-                const point = this.scene.points[index];
-                return new Point(
+
+        if (document.getElementById("polygonsCheckbox").checked) {
+            this.scene.polygons.forEach(polygon => {
+                const array = [];
+                polygon.points.forEach(index => 
+                    array.push({
+                        x : this.math3D.xs(this.scene.points[index]),
+                        y : this.math3D.ys(this.scene.points[index]),
+                    })
+                )
+                const lumen = this.math3D.calcIllumination(polygon.lumen, this.LIGHT.lumen);
+                let {r,g,b} = polygon.color;
+                r = Math.round(r*lumen);
+                g = Math.round(g*lumen);
+                b = Math.round(b*lumen);
+                this.canvas.polygon(array, `${polygon.rgbToHex(r, g, b)}`);
+            });
+        }
+
+        if (document.getElementById("edgesCheckbox").checked) {
+            this.scene.edges.forEach(edge => {
+                const point1 = this.scene.points[edge.p1];
+                const point2 = this.scene.points[edge.p2];
+                this.canvas.line(
+                    this.math3D.xs(point1),
+                    this.math3D.ys(point1),
+                    this.math3D.xs(point2),
+                    this.math3D.ys(point2)
+                );
+            });
+        }
+
+        if (document.getElementById("pointsCheckbox").checked) {
+            this.scene.points.forEach(point => {
+                this.canvas.point(
                     this.math3D.xs(point),
                     this.math3D.ys(point)
                 );
             });
-
-            this.canvas.polygon(points, polygon.color);
-        });
-        this.scene.edges.forEach(edge => {
-            const p1 = this.scene.points[edge.p1];
-            const p2 = this.scene.points[edge.p2];
-            this.canvas.line(
-                this.math3D.xs(p1),
-                this.math3D.ys(p1),
-                this.math3D.xs(p2),
-                this.math3D.ys(p2)
-            );
-        });
-
-        this.scene.points.forEach(point => {
-            this.canvas.point(
-                this.math3D.xs(point),
-                this.math3D.ys(point)
-            );
-        });
-
+        }
     }
 }
-
-

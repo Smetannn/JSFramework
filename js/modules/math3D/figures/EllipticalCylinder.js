@@ -1,0 +1,3 @@
+class EllipticalCylinder extends Figure {
+    
+}
